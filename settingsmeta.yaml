@@ -5,6 +5,6 @@ skillMetadata:
         - type: label
           label:
         - name: token
-          type: text
+          type: password
           label: Token
           value: ""

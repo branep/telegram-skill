@@ -55,14 +55,6 @@ class Telegram(MycroftSkill):
             self.log.error(e)
             return False
 
-    def mute_handler(self, message):
-        volume = self.mixer.getvolume()
-        self.mixer.setmute(1)
-        wait_while_speaking()
-        self.mixer.setmute(0)
-        self.mixer.setvolume(volume)
-        self.remove_event('recognizer_loop:audio_output_start')
-
     def send_handler(self, message):
         reply = message.data.get("utterance")
         if not self.msg_queue:
@@ -111,7 +103,9 @@ class Telegram(MycroftSkill):
         return True
 
     def stop(self):
-        self.log.info("Shutting down.")
+        self.log.info("Stopping...")
+        self.remove_event('recognizer_loop:audio_output_start')
+        self.remove_event('speak')
         return True
 
 
