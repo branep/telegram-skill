@@ -104,8 +104,11 @@ class Telegram(MycroftSkill):
 
     def stop(self):
         self.log.info("Stopping...")
-        self.remove_event('recognizer_loop:audio_output_start')
-        self.remove_event('speak')
+        for event in ['recognizer_loop:audio_output_start', 'speak']:
+        try:
+            self.remove_event(event)
+        except:
+            pass
         return True
 
 
