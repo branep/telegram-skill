@@ -1,0 +1,10 @@
+skillMetadata:
+  sections:
+    - name: Telegram Access
+      fields:
+        - type: label
+          label:
+        - name: token
+          type: text
+          label: Token
+          value: ""
